@@ -1,31 +1,37 @@
 #include <bits/stdc++.h>
 
-#define int long long
-
-const int MOD = 1e9 + 7;
-
-int memo[MAXN];
+const int md = (int) 1e9 + 7;
 
 using namespace std;
 
-int fact(int numb) {
-    if (numb == 1) return 1;
-    if (memo[numb] != 0) return memo[numb];
-    return memo[numb] = (numb * fact(numb - 1)) % MOD;
+long long memo[1003];
+
+long long fact(int numb) {
+  if (numb == 1) {
+    return 1;
+  }
+  if (memo[numb] != 0) {
+    return memo[numb];
+  }
+  return memo[numb] = (numb * fact(numb - 1)) % md;
 }
 
-
-int pow_mod(int x, int p) {
-    if (p == 0) return 1;
-    int c = pow_mod(x, p / 2) % MOD;
-    if (p & 1) return (((c * c) % MOD) * x) % MOD;
-    return (c * c) % MOD;
+long long pow_mod(long long x, int p) {
+  if (p == 0) {
+    return 1;
+  }
+  long long c = pow_mod(x, p / 2) % md;
+  if (p & 1) {
+    return (((c * c) % md) * x) % md;
+  }
+  return (c * c) % md;
 }
 
-
-int choose(int n_, int r) {
-    int numerator = fact(n_) % MOD;
-    int denominator = (fact(r) * fact(n_ - r)) % MOD;
-    return (numerator * pow_mod(denominator, MOD - 2)) % MOD;
+long long nCr(int n_, int r) {
+  if (n_ == r) {
+    return 1;
+  }
+  long long numerator = fact(n_) % md;
+  long long denominator = (fact(r) * fact(n_ - r)) % md;
+  return (numerator * pow_mod(denominator, md - 2)) % md;
 }
-
