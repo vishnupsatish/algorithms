@@ -7,7 +7,7 @@ using namespace std;
 long long memo[1003];
 
 long long fact(int numb) {
-  if (numb == 1) {
+  if (numb <= 1) {
     return 1;
   }
   if (memo[numb] != 0) {
