@@ -28,6 +28,9 @@ long long pow_mod(long long x, int p) {
 }
 
 long long nCr(int n_, int r) {
+  if (n_ < r) {
+    return 0;
+  }
   if (n_ == r) {
     return 1;
   }
